@@ -1,0 +1,22 @@
+body {
+  background-color: rgba(2, 0, 0, 0.164);
+}
+
+header {
+  background-color: aliceblue;
+  padding: 0.5em;
+  text-align: center;
+}
+
+form {
+  background-color: rgb(10, 10, 10);
+  border-radius: 5%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: space-evenly;
+  max-width: 300px;
+  padding: 25px;
+}
+
