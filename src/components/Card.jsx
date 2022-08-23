@@ -14,7 +14,7 @@ export default class Card extends Component {
       cardTrunfo,
     } = this.props;
     return (
-      <section id="card-area">
+      <section className="card-area">
         <h2 data-testid="name-card">{ cardName }</h2>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{ cardDescription }</p>
