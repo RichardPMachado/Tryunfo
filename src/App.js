@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from './components/Form';
-import './app.css';
+import './App.css';
 
-class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <>
@@ -14,5 +14,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
