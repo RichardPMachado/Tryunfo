@@ -13,6 +13,7 @@ export default class App extends Component {
     cardImage: '',
     cardRare: 'Normal',
     cardTrunfo: false,
+    data: [],
     // hasTrunfo: false,
     isSaveButtonDisabled: true,
   };
@@ -49,12 +50,23 @@ export default class App extends Component {
     });
   };
 
-  onSaveButtonClick = ({ target }) => {
-    console.log(target);
-    // this.setState((prevState) => ({
-    //   data: [...prevState.data, objInfo],
-    //   previewOn: true,
-    // }));
+  onSaveButtonClick = (objInfo) => { // aula Hellen
+    this.setState((prevState) => ({
+      data: [...prevState.data, objInfo],
+      previewOn: true,
+    }), () => {
+      this.setState({
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: 0,
+        cardAttr2: 0,
+        cardAttr3: 0,
+        cardImage: '',
+        cardRare: 'Normal',
+        cardTrunfo: false,
+        isSaveButtonDisabled: true,
+      });
+    });
   };
 
   render() {
@@ -91,7 +103,6 @@ export default class App extends Component {
             onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
-            key={ cardName }
             cardName={ cardName }
             cardDescription={ cardDescription }
             cardAttr1={ cardAttr1 }
@@ -111,7 +122,7 @@ export default class App extends Component {
               cardImage={ e.cardImage }
               cardRare={ e.cardRare }
               cardTrunfo={ e.cardTrunfo }
-              key={ e.cardName }
+              key={ `${data.length}-${e.cardName}` }
             />))
           }
         </main>
