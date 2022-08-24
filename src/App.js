@@ -7,9 +7,9 @@ export default class App extends Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'Normal',
     cardTrunfo: false,
@@ -49,11 +49,12 @@ export default class App extends Component {
     });
   };
 
-  onSaveButtonClick = (objInfo) => {
-    this.setState((prevState) => ({
-      data: [...prevState.data, objInfo],
-      previewOn: true,
-    }));
+  onSaveButtonClick = ({ target }) => {
+    console.log(target);
+    // this.setState((prevState) => ({
+    //   data: [...prevState.data, objInfo],
+    //   previewOn: true,
+    // }));
   };
 
   render() {
@@ -90,6 +91,7 @@ export default class App extends Component {
             onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
+            key={ cardName }
             cardName={ cardName }
             cardDescription={ cardDescription }
             cardAttr1={ cardAttr1 }
