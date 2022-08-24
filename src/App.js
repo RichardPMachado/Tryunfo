@@ -11,11 +11,10 @@ export default class App extends Component {
     cardAttr2: '',
     cardAttr3: '',
     cardImage: '',
-    cardRare: '',
-    cardTrunfo: '',
+    cardRare: 'Normal',
+    cardTrunfo: false,
     // hasTrunfo: false,
-    isDisable: true,
-
+    isSaveButtonDisabled: true,
   };
 
   onInputChange = ({ target }) => {
@@ -26,17 +25,35 @@ export default class App extends Component {
     }, () => {
       const {
         cardName, cardDescription, cardAttr1,
-        cardAttr2, cardAttr3, cardImage, cardRare, isDisable,
+        cardAttr2, cardAttr3, cardImage, cardRare,
       } = this.state;
+      const min = 0;
+      const max = 90;
+      const maxTotal = 210;
+      const somaAtributos = +cardAttr1 + +cardAttr2 + +cardAttr3;
 
       if (cardName && cardDescription
-        && cardAttr1 && cardAttr2 && cardAttr3
-        && cardImage && cardRare) {
-        this.setState({ isDisable });
+        && cardImage && cardRare
+        && cardAttr1 <= max
+        && cardAttr2 <= max
+        && cardAttr3 <= max
+        && cardAttr1 >= min
+        && cardAttr2 >= min
+        && cardAttr3 >= min
+        && somaAtributos <= maxTotal
+      ) {
+        this.setState({ isSaveButtonDisabled: false });
       } else {
-        this.setState({ isDisable: true });
+        this.setState({ isSaveButtonDisabled: true });
       }
     });
+  };
+
+  onSaveButtonClick = (objInfo) => {
+    this.setState((prevState) => ({
+      data: [...prevState.data, objInfo],
+      previewOn: true,
+    }));
   };
 
   render() {
@@ -49,9 +66,9 @@ export default class App extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      isDisabled,
-      onInputChange,
-      onSaveButtonClick,
+      isSaveButtonDisabled,
+      previewOn,
+      data,
     } = this.state;
     return (
       <>
@@ -68,7 +85,7 @@ export default class App extends Component {
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
-            isDisabled={ isDisabled }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
@@ -82,6 +99,19 @@ export default class App extends Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
+          {
+            previewOn === true && data.map((e) => (<Card
+              cardName={ e.cardName }
+              cardDescription={ e.cardDescription }
+              cardAttr1={ e.cardAttr1 }
+              cardAttr2={ e.cardAttr2 }
+              cardAttr3={ e.cardAttr3 }
+              cardImage={ e.cardImage }
+              cardRare={ e.cardRare }
+              cardTrunfo={ e.cardTrunfo }
+              key={ e.cardName }
+            />))
+          }
         </main>
       </>
     );
