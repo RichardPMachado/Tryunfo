@@ -8,19 +8,28 @@ header {
   text-align: center;
 }
 
+.container {
+  display: flex;
+}
+
 form {
-  background-color: rgb(10, 10, 10);
-  border-radius: 5%;
+  background-color: green;
   color: white;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 100vh;
   justify-content: space-evenly;
-  max-width: 300px;
-  padding: 25px;
+  padding: 3em 2em;
+  width: 50vw;
 }
 
 .card-area {
-  background-color: green;
+  background-color: rgb(10, 10, 10);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 3em 2em;
+  width: 50vw;
 }
 
