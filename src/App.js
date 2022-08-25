@@ -14,7 +14,6 @@ export default class App extends Component {
     cardRare: 'Normal',
     cardTrunfo: false,
     data: [],
-    // hasTrunfo: false,
     isSaveButtonDisabled: true,
   };
 
@@ -98,6 +97,7 @@ export default class App extends Component {
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
+            hasTrunfo={ data.some((e) => e.cardTrunfo === true) }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
