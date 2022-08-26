@@ -23,6 +23,11 @@ form {
   width: 50vw;
 }
 
+.card-area-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .card-area {
   background-color: rgb(10, 10, 10);
   color: white;

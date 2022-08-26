@@ -68,6 +68,16 @@ export default class App extends Component {
     });
   };
 
+  btnDelete = (indice) => { // refferencia do video que o Anderson Nunes postou no
+    const { data } = this.state;
+    const aux = data.slice();
+    aux.splice(indice, 1);
+    this.setState({
+      data: aux,
+    });
+  };
+  // a.filter((e) => e.cardName === target.cardName);
+
   render() {
     const {
       cardName,
@@ -112,19 +122,23 @@ export default class App extends Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
-          {
-            previewOn === true && data.map((e) => (<Card
-              cardName={ e.cardName }
-              cardDescription={ e.cardDescription }
-              cardAttr1={ e.cardAttr1 }
-              cardAttr2={ e.cardAttr2 }
-              cardAttr3={ e.cardAttr3 }
-              cardImage={ e.cardImage }
-              cardRare={ e.cardRare }
-              cardTrunfo={ e.cardTrunfo }
-              key={ `${data.length}-${e.cardName}` }
-            />))
-          }
+          <div className="card-area-container">
+            {
+              previewOn === true && data.map((e, index) => (<Card
+                cardName={ e.cardName }
+                cardDescription={ e.cardDescription }
+                cardAttr1={ e.cardAttr1 }
+                cardAttr2={ e.cardAttr2 }
+                cardAttr3={ e.cardAttr3 }
+                cardImage={ e.cardImage }
+                cardRare={ e.cardRare }
+                cardTrunfo={ e.cardTrunfo }
+                key={ `${data.length}-${e.cardName}` }
+                btnDelete={ this.btnDelete }
+                index={ index }
+              />))
+            }
+          </div>
         </main>
       </>
     );
